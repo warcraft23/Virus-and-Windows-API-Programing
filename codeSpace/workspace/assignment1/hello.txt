@@ -1,0 +1,29 @@
+Microsoft (R) COFF/PE Dumper Version 10.00.30319.01
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+
+Dump of file hello.obj
+
+File Type: COFF OBJECT
+
+_main:
+  00000000: 55                 push        ebp
+  00000001: 8B EC              mov         ebp,esp
+  00000003: 68 00 00 00 00     push        offset $SG341
+  00000008: E8 00 00 00 00     call        _my_print
+  0000000D: 83 C4 04           add         esp,4
+  00000010: 68 00 00 00 00     push        offset $SG342
+  00000015: E8 00 00 00 00     call        _printf
+  0000001A: 83 C4 04           add         esp,4
+  0000001D: 68 00 00 00 00     push        offset $SG344
+  00000022: E8 00 00 00 00     call        _system
+  00000027: 83 C4 04           add         esp,4
+  0000002A: 33 C0              xor         eax,eax
+  0000002C: 5D                 pop         ebp
+  0000002D: C3                 ret
+
+  Summary
+
+          16 .data
+          26 .drectve
+          2E .text

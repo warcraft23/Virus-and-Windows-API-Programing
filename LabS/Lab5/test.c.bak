@@ -1,0 +1,33 @@
+#include <windows.h>
+#include <stdio.h>
+ DWORD kernel32BaseAddr;
+
+int main(){
+	__asm{
+	
+		_GetBaseKernel32:
+        push    ebp
+        mov     ebp, esp
+        push    esi
+        push    edi
+        xor     ecx, ecx                    // ECX = 0
+        mov     esi, fs:[0x30]              // ESI = &(PEB) ([FS:0x30])
+        mov     esi, [esi + 0x0c]           // ESI = PEB->Ldr (LDR_DATA)
+        mov     esi, [esi + 0x1c]           // ESI = PEB->Ldr.InInitOrder
+		_next_module:
+        mov     eax, [esi + 0x08]           // EBP = InInitOrder[X].base_address
+        mov     edi, [esi + 0x20]           // EBP = InInitOrder[X].module_name (unicode) 这个地址指向的位置存放着一个unicode编码的字符串，字符串内容就是dll的文件名
+        mov     esi, [esi]                  // ESI = InInitOrder[X].flink (next module)
+        cmp     [edi + 12*2], cx            // modulename[12] == 0 ? 一个unicode的长度为2个字节，所以*2，然后kernel32.dll有12*2个字节长，那么第25个字节必为0 
+        jne     _next_module                 // No: try next module.
+        pop     edi
+        pop     esi
+        mov     esp, ebp
+        pop     ebp
+        
+   mov dword ptr [kernel32BaseAddr],eax
+	}
+	printf("0x%08x",kernel32BaseAddr);
+
+
+}

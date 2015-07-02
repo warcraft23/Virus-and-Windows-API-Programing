@@ -1,0 +1,30 @@
+# Project: myCTestProject
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++.exe
+CC   = gcc.exe
+WINDRES = windres.exe
+RES  = 
+OBJ  = main.o $(RES)
+LINKOBJ  = main.o $(RES)
+LIBS =  -L"G:/Program Files/DEV-CPP/lib"  
+INCS =  -I"G:/Program Files/DEV-CPP/include" 
+CXXINCS =  -I"G:/Program Files/DEV-CPP/lib/gcc/mingw32/3.4.2/include"  -I"G:/Program Files/DEV-CPP/include/c++/3.4.2/backward"  -I"G:/Program Files/DEV-CPP/include/c++/3.4.2/mingw32"  -I"G:/Program Files/DEV-CPP/include/c++/3.4.2"  -I"G:/Program Files/DEV-CPP/include" 
+BIN  = myCTestProject.exe
+CXXFLAGS = $(CXXINCS)  
+CFLAGS = $(INCS)  
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before myCTestProject.exe all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o "myCTestProject.exe" $(LIBS)
+
+main.o: main.c
+	$(CC) -c main.c -o main.o $(CFLAGS)

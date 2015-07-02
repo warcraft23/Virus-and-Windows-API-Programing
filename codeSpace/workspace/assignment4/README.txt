@@ -1,0 +1,1 @@
+先编译链接完hello.c和inject.c，然后运行hello，再运行inject <pid of hello.exe>,然后hello就被我们修改了，并且执行结束，inject.exe被我们删除

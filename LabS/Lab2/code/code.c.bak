@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <windows.h>
+#pragma comment(lib,"user32.lib")
+
+char *s="I'm hacked!";
+
+
+/*__declspec(naked)*/ int main(){
+		
+		
+		MessageBoxA(0,s,s,MB_OK);
+		/*__asm{
+			
+			push ebp
+    	mov  ebp, esp
+    	sub  esp, 0x30
+    	mov  [ebp-0x2f], 'I'
+    	mov  [ebp-0x2e], '\''
+    	mov  [ebp-0x2d], 'm'
+    	mov  [ebp-0x2c], ' '
+    	mov  [ebp-0x2b], 'h'
+    	mov  [ebp-0x2a], 'a'
+    	mov  [ebp-0x29], 'c'
+    	mov  [ebp-0x28], 'k'
+    	mov  [ebp-0x27], 'e'
+    	mov  [ebp-0x26], 'd'
+    	mov  [ebp-0x25], '!'
+    	mov  [ebp-0x24], 0x0
+   
+   		push 0
+    	lea  eax, [ebp-0x2f]
+    	push eax
+    	push eax
+    	push 0
+    	call dword ptr [MessageBoxA] 
+			add esp ,0x30
+			mov esp ,ebp
+			pop ebp
+			ret
+			}
+		*/
+	
+	
+	return 0;
+	}
